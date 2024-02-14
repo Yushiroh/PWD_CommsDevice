@@ -28,6 +28,7 @@ const int vibr = 25;
 
 String patterns = "XXXXXX";
 String msg;
+char msgToChar;
 
 int buttonFlip;
 int arrayCount = 0;
@@ -166,20 +167,23 @@ String morseConverter(String msgIn){
 }
 
 void combiManager(String sortThis){
-
-  for(int i = 0; i > 6; i++){
+  for(int i = 0; i < 6; i++){
+    Serial.print("For loop Value:");
+    Serial.println(sortThis);
     if(sortThis[i] == 'L'){
 
       Serial.println("L note");
       digitalWrite(vibr, HIGH);
-      delay(100);
+      delay(150);
       digitalWrite(vibr, LOW);
+      delay(100);
 
     }else if(sortThis[i] == 'M'){
       Serial.println("M note");
       digitalWrite(vibr, HIGH);
-      delay(200);
+      delay(300);
       digitalWrite(vibr, LOW);
+      delay(100);
     }else{
       Serial.println("Invalid Note");
     }
@@ -187,6 +191,9 @@ void combiManager(String sortThis){
 }
 
 void noteConvert(char mNote){
+  Serial.print("The inherited Variable: ");
+  Serial.println(mNote);
+
   switch (mNote)
   {
   case 'A':
@@ -227,6 +234,9 @@ void noteConvert(char mNote){
     break;
   case 'M':
     combiManager("MMXXXX");
+    break;
+  case 'N':
+    combiManager("MLXXXX");
     break;
   case 'O':
     combiManager("MLXXXX");
@@ -462,10 +472,10 @@ void receiverMode(){
     
     lcd.setCursor(0,0);
     lcd.print(msg[0]);
-    char msgToChar = msg[0];
+    msgToChar = msg[0];
     noteConvert(msgToChar);
     Serial.print("Note to convert is: ");
-    Serial.print(msg[0]);
+    Serial.println(msgToChar);
     
     msg="";
     
