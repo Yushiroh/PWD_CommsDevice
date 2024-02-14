@@ -165,6 +165,141 @@ String morseConverter(String msgIn){
   return conv;
 }
 
+void combiManager(String sortThis){
+
+  for(int i = 0; i > 6; i++){
+    if(sortThis[i] == 'L'){
+
+      Serial.println("L note");
+      digitalWrite(vibr, HIGH);
+      delay(100);
+      digitalWrite(vibr, LOW);
+
+    }else if(sortThis[i] == 'M'){
+      Serial.println("M note");
+      digitalWrite(vibr, HIGH);
+      delay(200);
+      digitalWrite(vibr, LOW);
+    }else{
+      Serial.println("Invalid Note");
+    }
+  }
+}
+
+void noteConvert(char mNote){
+  switch (mNote)
+  {
+  case 'A':
+    combiManager("LMXXXX");
+    break;
+  case 'B':
+    combiManager("MLLLXX");
+    break;
+  case 'C':
+    combiManager("MLMLXX");
+    break;
+  case 'D':
+    combiManager("MLLXX");
+    break;
+  case 'E':
+    combiManager("LXXXXX");
+    break;
+  case 'F':
+    combiManager("LLMLXX");
+    break;
+  case 'G':
+    combiManager("MMLXXX");
+    break;
+  case 'H':
+    combiManager("LLLLXX");
+    break;
+  case 'I':
+    combiManager("LLXXXX");
+    break;
+  case 'J':
+    combiManager("LMMMXX");
+    break;
+  case 'K':
+    combiManager("MLMXXX");
+    break;
+  case 'L':
+    combiManager("LMLLXX");
+    break;
+  case 'M':
+    combiManager("MMXXXX");
+    break;
+  case 'O':
+    combiManager("MLXXXX");
+    break;
+  case 'P':
+    combiManager("LMMLXX");
+    break;
+  case 'Q':
+    combiManager("MMLMXX");
+    break;
+  case 'R':
+    combiManager("LMLXXX");
+    break;
+  case 'S':
+    combiManager("LLLXXX");
+    break;
+  case 'T':
+    combiManager("MXXXXX");
+    break;
+  case 'U':
+    combiManager("LLMXXX");
+    break;
+  case 'V':
+    combiManager("LLLMXX");
+    break;
+  case 'W':
+    combiManager("LMMXXX");
+    break;
+  case 'X':
+    combiManager("MLLMXX");
+    break;
+  case 'Y':
+    combiManager("MLMMXX");
+    break;
+  case 'Z':
+    combiManager("MMLLXX");
+    break;
+  case '1':
+    combiManager("LMMMMX");
+    break;
+  case '2':
+    combiManager("LLMMMX");
+    break;
+  case '3':
+    combiManager("LLLMMX");
+    break;
+  case '4':
+    combiManager("LLLLMX");
+    break;
+  case '5':
+    combiManager("LLLLLX");
+    break;
+  case '6':
+    combiManager("MLLLLX");
+    break;
+  case '7':
+    combiManager("MMLLLX");
+    break;
+  case '8':
+    combiManager("MMMLLX");
+    break;
+  case '9':
+    combiManager("MMMMLX");
+    break;
+  case '0':
+    combiManager("MMMMM");
+    break;
+  default:
+    Serial.println("No Value");
+    break;
+  }
+}
+
 void setup() {
   pinMode(vibr, OUTPUT);
   pinMode(buttL, INPUT_PULLUP);
@@ -327,7 +462,9 @@ void receiverMode(){
     
     lcd.setCursor(0,0);
     lcd.print(msg[0]);
-
+    noteConvert(msg[0]);
+    Serial.print("Note to convert is: ");
+    Serial.print(msg[0]);
     
     msg="";
     
