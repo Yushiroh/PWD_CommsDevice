@@ -292,7 +292,7 @@ void noteConvert(char mNote){
     combiManager("MMMMLX");
     break;
   case '0':
-    combiManager("MMMMM");
+    combiManager("MMMMMX");
     break;
   default:
     Serial.println("No Value");
@@ -462,7 +462,8 @@ void receiverMode(){
     
     lcd.setCursor(0,0);
     lcd.print(msg[0]);
-    noteConvert(msg[0]);
+    char msgToChar = msg[0];
+    noteConvert(msgToChar);
     Serial.print("Note to convert is: ");
     Serial.print(msg[0]);
     
